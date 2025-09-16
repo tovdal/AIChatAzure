@@ -17,6 +17,7 @@ builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 var azureOpenAi = new AzureOpenAIClient(
     new Uri(builder.Configuration["AzureOpenAI:Endpoint"] ?? throw new InvalidOperationException("Missing configuration: AzureOpenAi:Endpoint. See the README for details.")),
     new DefaultAzureCredential());
+
 var chatClient = azureOpenAi.GetChatClient("gpt-4o-mini").AsIChatClient();
 var embeddingGenerator = azureOpenAi.GetEmbeddingClient("text-embedding-3-small").AsIEmbeddingGenerator();
 
